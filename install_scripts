@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for f in "$@"
+do
+  read -p "Going to install $f ...Are you sure? " -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    install_script "$f"
+  fi  
+done

@@ -1,0 +1,11 @@
+#!/bin/bash
+touch /tmp/port.txt
+lsof -n -i4TCP:$1 | awk "{print $2}" > /tmp/port.txt
+pidToStop=`(sed '2q;d' /tmp/port.txt)` > /tmp/port.txt
+if [[ -n $pidToStop ]]; then
+kill -9 $pidToStop
+echo "stop: process on port $1 was killed"
+else
+echo "stop: no process is running on port $1"
+fi
+rm /tmp/port.txt

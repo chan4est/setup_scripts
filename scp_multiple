@@ -1,0 +1,5 @@
+#!/bin/bash
+## USAGE scp_multiple < file of hosts
+while read host; do
+  scp $1 ${host}:
+done
